@@ -7,22 +7,36 @@ const TasksList = ({ tasks, handleDelete, addTask }) => {
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       addTask(inputValue);
-      setInputValue(""); 
+      setInputValue("");
     }
   };
 
   return (
-    <div className="task-list">
-      {tasks.map(task => (
-        <div className="task-preview" key={task.id} >
-          <h2>{task.task}</h2>
-          <button onClick={() => handleDelete(task.id)}>Delete</button>
+    
+      <div className="card my-3">
+        <div>
+          <input type="text" className="form-control form-control-lg custom-shadow rounded-0" value={inputValue} onChange={e => setInputValue(e.target.value)} onKeyDown={handleKeyDown} placeholder="Add task & press Enter" />
         </div>
-      ))}
-
-      <label htmlFor="inputTask" className="form-control form-control-lg">Add Task</label>
-      <input type="text" id="inputTask" className="form-control" value={inputValue} onChange={e => setInputValue(e.target.value)} onKeyDown={handleKeyDown} placeholder="Type and press Enter"/>
-    </div>
+        <ul className="list-group list-group-flush">
+          {tasks.map(task => (
+            <li key={task.id} className="list-group-item list-group-item-action d-flex justify-content-between align-items-center task-preview py-3" style={{ cursor: "default" }}>
+              <div className="d-flex align-items-center gap-3 ms-1 ms-sm-5">
+                <i className="bi bi-stars fs-6"></i>
+                <span>{task.task}</span>
+              </div>
+              <button className="btn btn-light btn-sm delete-btn border-0 bg-transparent" onClick={() => handleDelete(task.id)}>
+                <i className="bi bi-trash text-danger"></i>
+              </button>
+            </li>
+          ))}
+        </ul>
+        <div className="card-footer text-muted fst-italic py-1">
+          {tasks.length === 0
+            ? "No tasks left, add task!"
+            : `${tasks.length} ${tasks.length === 1 ? "task" : "tasks"} left`}
+        </div>
+      </div>
+    
   );
 }
 

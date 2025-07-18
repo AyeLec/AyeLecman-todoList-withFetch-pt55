@@ -17,14 +17,15 @@ const Home = () => {
 	const addTask = (newTaskText) => {
 		if (newTaskText.trim() === "") return;
 		const newTask = {
-			task: newTaskText,
-			id: Date.now() // genera un id único
+			task: newTaskText.trim(),
+			id: Date.now() 
 		};
 		setTasks(prevTasks => [...prevTasks, newTask]);
 	};
+	
 
 	return (
-		<div className="home">
+		<div className="home container-fluid d-flex justify-content-center">
 			<TasksList tasks={tasks} handleDelete={handleDelete} addTask={addTask} />
 		</div>
 	);

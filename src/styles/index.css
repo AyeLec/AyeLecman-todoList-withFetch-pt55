@@ -9,3 +9,72 @@
     import 'relative/path/to/stylesheet.scss';
 
 */
+.delete-btn {
+  display: none;
+}
+
+.task-preview:hover .delete-btn {
+  display: inline-block;
+}
+
+.task-title {
+  cursor: pointer;
+}
+
+.custom-shadow:focus {
+  box-shadow: 0 0 8px 3px rgba(255, 105, 180, 0.6);
+  /* rosa más intenso */
+  border-color: rgba(255, 105, 180, 0.7);
+  /* rosa fuerte */
+}
+
+.jumbotron {
+  color: pink;
+  font-size: 10rem;
+}
+
+.text-muted {
+  font-size: 0.9rem !important;
+}
+
+.custom-shadow::placeholder {
+  color: #adb5bd;
+}
+
+.bi-stars {
+  color: pink;
+}
+
+.bi-check2-circle {
+  font-size: 5rem;
+  color: rgb(168, 155, 158);
+}
+
+.task-preview {
+  font-size: 1.5rem;
+}
+
+.card {
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 576px) {
+  .jumbotron {
+    font-size: 5rem;
+  }
+
+  .bi-check2-circle {
+    font-size: 2.5rem;
+  }
+
+  .task-preview {
+    font-size: 1rem;
+  }
+
+  .card {
+    width: 100%;
+  }
+
+}
