@@ -18,13 +18,13 @@ const TasksList = ({ tasks, handleDelete, addTask }) => {
           <input type="text" className="form-control form-control-lg custom-shadow rounded-0" value={inputValue} onChange={e => setInputValue(e.target.value)} onKeyDown={handleKeyDown} placeholder="Add task & press Enter" />
         </div>
         <ul className="list-group list-group-flush">
-          {tasks.map(task => (
-            <li key={task.id} className="list-group-item list-group-item-action d-flex justify-content-between align-items-center task-preview py-3" style={{ cursor: "default" }}>
+          {tasks.map((task, index) => (
+            <li key={index} className="list-group-item list-group-item-action d-flex justify-content-between align-items-center task-preview py-3" style={{ cursor: "default" }}>
               <div className="d-flex align-items-center gap-3 ms-1 ms-sm-5">
                 <i className="bi bi-stars fs-6"></i>
-                <span>{task.task}</span>
+                <span>{task}</span>
               </div>
-              <button className="btn btn-light btn-sm delete-btn border-0 bg-transparent" onClick={() => handleDelete(task.id)}>
+              <button className="btn btn-light btn-sm delete-btn border-0 bg-transparent" onClick={() => handleDelete(index)}>
                 <i className="bi bi-trash text-danger"></i>
               </button>
             </li>

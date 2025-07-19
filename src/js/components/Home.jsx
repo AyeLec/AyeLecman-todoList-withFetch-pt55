@@ -3,23 +3,15 @@ import TasksList from "./TasksList"
 
 //create your first component
 const Home = () => {
-	const [tasks, setTasks] = useState([
-		{ task: "Make the bed", id: 1 },
-		{ task: "Drink water", id: 2 },
-		{ task: "Study a lot", id: 3 }
-	])
+	const [tasks, setTasks] = useState(["Make the bed", "Drink water", "Study a lot"])
 
-	const handleDelete = (id) => {
-		const newTasks = tasks.filter(task => task.id !== id);
-		setTasks(newTasks);
+	const handleDelete = (indexToDelete) => {
+		setTasks(prev => prev.filter((_, i) => i !== indexToDelete));
 	};
 
 	const addTask = (newTaskText) => {
 		if (newTaskText.trim() === "") return;
-		const newTask = {
-			task: newTaskText.trim(),
-			id: Date.now() 
-		};
+		const newTask = newTaskText.trim();
 		setTasks(prevTasks => [...prevTasks, newTask]);
 	};
 	
