@@ -3,27 +3,31 @@ import TasksList from "./TasksList";
 
 const USER = "aye_lecman";
 
-// la base se elimina todas las semanas, hacer un condicional, si el usuario no existe, hacer el post
-// fetch('examples/example.json')
-//     .then(response => {
-// 	    if (!response.ok) {
-// 	    throw new Error(response.statusText);
-// 		}
-// 		// Aquí es donde pones lo que quieres hacer con la respuesta
-// 	})
-// 	.catch(error => {
-// 		console.log('Looks like there was a problem: \n', error);
-// 	});
-
 const Home = () => {
 	const [tasks, setTasks] = useState([]);
 	const [error, setError] = useState("");
 
 	useEffect(() => {
 		fetch(`https://playground.4geeks.com/todo/users/${USER}`)
+			.then(res => {
+				if (!res.ok) {
+					return fetch(`https://playground.4geeks.com/todo/users/${USER}`, {
+						method: "POST",
+						headers: { "Content-Type": "application/json" },
+						body: JSON.stringify([])
+					});
+				}
+				return res;
+			})
 			.then(res => res.json())
-			.then(data => setTasks(data.todos))
-			.catch(err => setError("Error al cargar tareas"));
+			.then(data => {
+				if (data.todos) {
+					setTasks(data.todos);
+				} else {
+					setTasks([]);
+				}
+			})
+			.catch(err => setError("Error al verificar o crear usuario"));
 	}, []);
 
 	const addTask = (newTaskText) => {
@@ -68,7 +72,7 @@ const Home = () => {
 			.then(responses => {
 				const allOk = responses.every(res => res.ok);
 				if (allOk) {
-					setTasks([]); // Limpiar localmente
+					setTasks([]); 
 				} else {
 					setError("Algunas tareas no se pudieron borrar");
 				}
