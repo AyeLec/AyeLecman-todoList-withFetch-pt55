@@ -41,7 +41,7 @@ const TasksList = ({ tasks, handleDelete, addTask, deleteAllTasks }) => {
 				{tasks.length === 0
 					? "No tasks left, add task!"
 					: `${tasks.length} ${tasks.length === 1 ? "task" : "tasks"} left`}
-          <button className= "btn btn-warning btn-sm" onClick={deleteAllTasks}>Delete all</button>
+				<button className="btn btn-warning btn-sm" onClick={deleteAllTasks}>Delete all</button>
 			</div>
 		</div>
 	);
