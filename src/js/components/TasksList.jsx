@@ -25,12 +25,12 @@ const TasksList = ({ tasks, handleDelete, addTask, deleteAllTasks }) => {
 
 			<ul className="list-group list-group-flush">
 				{tasks.map((task) => (
-					<li key={task.id} className="list-group-item d-flex justify-content-between align-items-center py-3">
+					<li key={task.id} className="list-group-item d-flex justify-content-between align-items-center py-3 task-preview">
 						<div className="d-flex align-items-center gap-3 ms-1 ms-sm-5">
 							<i className="bi bi-stars fs-6"></i>
 							<span>{task.label}</span>
 						</div>
-						<button className="btn btn-light btn-sm border-0 bg-transparent" onClick={() => handleDelete(task.id)}>
+						<button className="btn btn-light btn-sm border-0 bg-transparent delete-btn" onClick={() => handleDelete(task.id)}>
 							<i className="bi bi-trash text-danger"></i>
 						</button>
 					</li>
